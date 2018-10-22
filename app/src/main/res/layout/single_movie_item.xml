@@ -6,14 +6,13 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-
+        android:layout_margin="@dimen/margin"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/movie_poster"
-            android:layout_width="175dp"
-            android:layout_height="220dp"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="@dimen/image_height"
             android:contentDescription="@string/image_description"
             android:src="@drawable/ic_launcher_background"
 
@@ -24,9 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/test_text" />
+            android:text="@string/test_text"
+            android:textColor="@color/primaryText"
+            />
 
         <TextView
+            android:textColor="@color/secondryText"
             android:id="@+id/movie_overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

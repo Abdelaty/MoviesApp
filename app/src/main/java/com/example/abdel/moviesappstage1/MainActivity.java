@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
     //String apiKey=BuildConfig;
     String baseUrl = "http://image.tmdb.org/t/p/w185";
     //String apiKey = BuildConfig.API_KEY;
+    MenuItem popularItem;
+    MenuItem topRatedItem;
+
+    //Your API should be here
 
     String popularUrl = "http://api.themoviedb.org/3/movie/popular?api_key=";
     String topRatedUrl = "http://api.themoviedb.org/3/movie/top_rated?api_key=";
@@ -48,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        popularItem = (MenuItem) findViewById(R.id.popular);
+        topRatedItem = (MenuItem) findViewById(R.id.rated);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         moviesRecyclerView = findViewById(R.id.rv_widget);
@@ -58,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON(popularUrl);
 
-
-        //Linear to gridView
         moviesRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
@@ -75,20 +80,21 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject result = jsonArray.getJSONObject(i);
-                        String movieName = result.getString("title");
-                        String imagePath = result.getString("poster_path");
-                        String movieRate = result.getString("vote_average");
-                        String movieOverview = result.getString("overview");
-                        String movieReleaseDate = result.getString("release_date");
-                        String imageUrl = baseUrl + imagePath;
-                        Log.v("Image Event", "image Url is: " + imageUrl);
-                        moviesArrayList.add(new MoviesModel(imageUrl, movieName, movieReleaseDate, movieOverview, movieRate));
+                        if (result.has("title") || result.has("poster_path") || result.has("vote_average") || result.has("overview") || response.has("release_date")) {
+                            String movieName = result.getString("title");
+                            String imagePath = result.getString("poster_path");
+                            String movieRate = result.getString("vote_average");
+                            String movieOverview = result.getString("overview");
+                            String movieReleaseDate = result.getString("release_date");
+                            String imageUrl = baseUrl + imagePath;
+                            Log.v("Image Event", "image Url is: " + imageUrl);
+                            moviesArrayList.add(new MoviesModel(imageUrl, movieName, movieReleaseDate, movieOverview, movieRate));
 
-                        moviesAdapter = new MoviesAdapter(MainActivity.this, moviesArrayList);
-                        moviesRecyclerView.setAdapter(moviesAdapter);
-                        moviesAdapter.setOnItemClickListener(MainActivity.this);
+                            moviesAdapter = new MoviesAdapter(MainActivity.this, moviesArrayList);
+                            moviesRecyclerView.setAdapter(moviesAdapter);
+                            moviesAdapter.setOnItemClickListener(MainActivity.this);
 
-
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -113,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
     }
 
     @Override
+
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.popular) {
@@ -120,15 +127,24 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
             parseJSON(popularUrl);
             moviesArrayList.clear();
             moviesAdapter.notifyDataSetChanged();
-
+            ///   popularItem.setVisible(false);
+         /*   if (!topRatedItem.isVisible()) {
+                topRatedItem.setVisible(true);
+            } else if (popularItem.isVisible()) {
+                popularItem.setVisible(false);
+            }*/
             return true;
         }
-        if (itemThatWasClickedId == R.id.Rated) {
+        if (itemThatWasClickedId == R.id.rated) {
             Toast.makeText(this, "Top Rated", Toast.LENGTH_SHORT).show();
             parseJSON(topRatedUrl);
             moviesArrayList.clear();
             moviesAdapter.notifyDataSetChanged();
-            setVisible(true);
+           /* if (!popularItem.isVisible()) {
+                popularItem.setVisible(true);
+            } else if (topRatedItem.isVisible()) {
+                topRatedItem.setVisible(false);
+            }*/
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -143,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
         detailIntent.putExtra(EXTRA_TITLE, clickedItem.getmMovieName());
 
         detailIntent.putExtra(EXTRA_RATE, clickedItem.getmMovieRate());
-        detailIntent.putExtra(EXTRA_RELEASE, clickedItem.getmMovieName());
+        detailIntent.putExtra(EXTRA_RELEASE, clickedItem.getmMovieReleaseDate());
         detailIntent.putExtra(EXTRA_OVERVIEW, clickedItem.getmMovieOverview());
 
         startActivity(detailIntent);

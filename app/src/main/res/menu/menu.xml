@@ -4,7 +4,7 @@
         android:orderInCategory="1"
         android:title="@string/popular_movie" />
     <item
-        android:id="@+id/Rated"
+        android:id="@+id/rated"
         android:orderInCategory="1"
         android:title="@string/top_rated" />
 </menu>
