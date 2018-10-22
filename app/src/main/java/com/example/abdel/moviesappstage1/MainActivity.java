@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
 
     //Your API should be here
 
-    String popularUrl = "http://api.themoviedb.org/3/movie/popular?api_key=28d6cfccb10e5e4d42b71bdfd19ec50b";
-    String topRatedUrl = "http://api.themoviedb.org/3/movie/top_rated?api_key=28d6cfccb10e5e4d42b71bdfd19ec50b";
+    String popularUrl = "http://api.themoviedb.org/3/movie/popular?api_key=";
+    String topRatedUrl = "http://api.themoviedb.org/3/movie/top_rated?api_key=";
     private RecyclerView moviesRecyclerView;
     private ArrayList<MoviesModel> moviesArrayList;
     private MoviesAdapter moviesAdapter;
