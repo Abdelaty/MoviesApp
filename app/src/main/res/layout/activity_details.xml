@@ -8,8 +8,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:padding="@dimen/layour_padding">
 
         <ImageView
             android:id="@+id/iv_movie_poster_detail"
@@ -27,82 +28,87 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_movie_poster_detail"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/tv_name_size"
             android:textStyle="bold|italic"
             app:fontFamily="sans-serif"
-            tools:text="Movie"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginBottom="@dimen/margin"/>
+            tools:text="Movie" />
 
         <TextView
             android:id="@+id/tv_movie_overview_label"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/tv_movie_name"
             android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/margin"
             android:text="@string/overview"
             android:textColor="@color/primaryText"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_movie_overview"
-
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_movie_name"
+            android:layout_margin="@dimen/margin"
             android:layout_toRightOf="@id/tv_movie_overview_label"
             android:textColor="@color/secondryText"
-            tools:text="Movie"
- />
+            tools:text="Movie" />
 
         <TextView
             android:id="@+id/tv_movie_rate_label"
-
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_below="@id/tv_movie_overview"
+            android:layout_margin="@dimen/margin"
             android:text="@string/rate"
             android:textColor="@color/primaryText"
-            android:textStyle="bold"
-            android:layout_alignParentStart="true" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_movie_Rate"
-
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_movie_overview"
+            android:layout_margin="@dimen/margin"
+            android:layout_toEndOf="@id/tv_movie_rate_label"
             android:layout_toRightOf="@id/tv_movie_rate_label"
             android:textColor="@color/secondryText"
-            tools:text="Movie"
-            android:layout_toEndOf="@id/tv_movie_rate_label" />
+            tools:text="Movie" />
 
 
         <TextView
             android:id="@+id/tv_movie_release_date_label"
-
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_below="@id/tv_movie_Rate"
+            android:layout_margin="@dimen/margin"
             android:text="@string/release_date"
-            android:textColor="@color/primaryText"
 
-            android:textStyle="bold"
-            android:layout_alignParentStart="true" />
+            android:textColor="@color/primaryText"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_movie_release_date"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_movie_Rate"
+            android:layout_margin="@dimen/margin"
+            android:layout_toEndOf="@id/tv_movie_release_date_label"
             android:layout_toRightOf="@id/tv_movie_release_date_label"
             android:textColor="@color/secondryText"
-            tools:text="Movie"
-            android:layout_toEndOf="@id/tv_movie_release_date_label" />
+            tools:text="Movie" />
     </RelativeLayout>
 </ScrollView>

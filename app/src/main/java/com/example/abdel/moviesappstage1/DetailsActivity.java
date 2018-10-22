@@ -9,12 +9,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import static com.example.abdel.moviesappstage1.MainActivity.EXTRA_OVERVIEW;
-import static com.example.abdel.moviesappstage1.MainActivity.EXTRA_RATE;
-import static com.example.abdel.moviesappstage1.MainActivity.EXTRA_RELEASE;
-import static com.example.abdel.moviesappstage1.MainActivity.EXTRA_TITLE;
-import static com.example.abdel.moviesappstage1.MainActivity.EXTRA_URL;
-
 public class DetailsActivity extends AppCompatActivity {
 
     @Override
@@ -23,18 +17,16 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         Intent intent = getIntent();
-        String imageUrl = intent.getStringExtra(EXTRA_URL);
-        String movieRate = intent.getStringExtra(EXTRA_RATE);
-        String movieReleaseDate = intent.getStringExtra(EXTRA_RELEASE);
-        String movieOverview = intent.getStringExtra(EXTRA_OVERVIEW);
-        String movieName = intent.getStringExtra(EXTRA_TITLE);
-
+        String imageUrl = intent.getStringExtra("imagePath");
+        String movieRate = intent.getStringExtra("movieRate");
+        String movieReleaseDate = intent.getStringExtra("movieReleaseDate");
+        String movieOverview = intent.getStringExtra("movieOverview");
+        String movieName = intent.getStringExtra("movieName");
 
         ImageView moviePoster = findViewById(R.id.iv_movie_poster_detail);
         TextView tvMovieName = findViewById(R.id.tv_movie_name);
         TextView tvMovieRate = findViewById(R.id.tv_movie_Rate);
         tvMovieRate.setVisibility(View.VISIBLE);
-
         TextView tvMovieOverview = findViewById(R.id.tv_movie_overview);
         tvMovieOverview.setVisibility(View.VISIBLE);
 
@@ -42,12 +34,12 @@ public class DetailsActivity extends AppCompatActivity {
         tvMovieReleaseDate.setVisibility(View.VISIBLE);
 
 
-        Picasso.with(this).load(imageUrl).into(moviePoster);
+        Picasso.with(this).load(imageUrl).placeholder(R.drawable.user_placeholder).error(R.drawable.user_placeholder).into(moviePoster);
         tvMovieName.setText(movieName);
         tvMovieRate.setText(movieRate);
         tvMovieReleaseDate.setText(movieReleaseDate);
         tvMovieOverview.setText(movieOverview);
-       setTitle(movieName);
+        setTitle(movieName);
 
     }
 }

@@ -4,15 +4,11 @@
     android:layout_margin="@dimen/margin"
     android:orientation="vertical">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="auto_fit">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_widget"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </GridLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_widget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

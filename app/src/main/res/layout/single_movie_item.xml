@@ -24,16 +24,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/test_text"
-            android:textColor="@color/primaryText"
-            />
+            android:textColor="@color/primaryText" />
 
         <TextView
-            android:textColor="@color/secondryText"
             android:id="@+id/movie_overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/test_text"
+            android:textColor="@color/secondryText"
             android:visibility="gone" />
 
         <TextView

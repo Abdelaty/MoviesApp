@@ -4,9 +4,9 @@
     <string name="test_text">Title</string>
     <string name="popular_movie">Popular Movie</string>
     <string name="top_rated">Top Rated</string>
-    <string name="release_date">Release Date: </string>
-    <string name="rate">Rate: </string>
-    <string name="overview">Overview: </string>
+    <string name="release_date">Release Date:  </string>
+    <string name="rate">Rate:  </string>
+    <string name="overview">Overview:  </string>
     <string name="a">28d6cfccb10e5e4d42b71bdfd19ec50b </string>
 
 </resources>

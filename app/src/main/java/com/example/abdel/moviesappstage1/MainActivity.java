@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
 
     //Your API should be here
 
-    String popularUrl = "http://api.themoviedb.org/3/movie/popular?api_key=";
-    String topRatedUrl = "http://api.themoviedb.org/3/movie/top_rated?api_key=";
+    String popularUrl = "http://api.themoviedb.org/3/movie/popular?api_key=28d6cfccb10e5e4d42b71bdfd19ec50b";
+    String topRatedUrl = "http://api.themoviedb.org/3/movie/top_rated?api_key=28d6cfccb10e5e4d42b71bdfd19ec50b";
     private RecyclerView moviesRecyclerView;
     private ArrayList<MoviesModel> moviesArrayList;
     private MoviesAdapter moviesAdapter;
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.v("Err", "erroeeeeeeeeeeee");
+                    Log.v("JSON EXCEPTION Event", "No data reccieved ");
                 }
 
             }
@@ -127,12 +127,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
             parseJSON(popularUrl);
             moviesArrayList.clear();
             moviesAdapter.notifyDataSetChanged();
-            ///   popularItem.setVisible(false);
-         /*   if (!topRatedItem.isVisible()) {
-                topRatedItem.setVisible(true);
-            } else if (popularItem.isVisible()) {
-                popularItem.setVisible(false);
-            }*/
+
             return true;
         }
         if (itemThatWasClickedId == R.id.rated) {
@@ -140,11 +135,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
             parseJSON(topRatedUrl);
             moviesArrayList.clear();
             moviesAdapter.notifyDataSetChanged();
-           /* if (!popularItem.isVisible()) {
-                popularItem.setVisible(true);
-            } else if (topRatedItem.isVisible()) {
-                topRatedItem.setVisible(false);
-            }*/
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -155,12 +146,11 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
         Intent detailIntent = new Intent(this, DetailsActivity.class);
         MoviesModel clickedItem = moviesArrayList.get(position);
 
-        detailIntent.putExtra(EXTRA_URL, clickedItem.getmImageUrl());
-        detailIntent.putExtra(EXTRA_TITLE, clickedItem.getmMovieName());
-
-        detailIntent.putExtra(EXTRA_RATE, clickedItem.getmMovieRate());
-        detailIntent.putExtra(EXTRA_RELEASE, clickedItem.getmMovieReleaseDate());
-        detailIntent.putExtra(EXTRA_OVERVIEW, clickedItem.getmMovieOverview());
+        detailIntent.putExtra("imagePath", clickedItem.getmImageUrl());
+        detailIntent.putExtra("movieName", clickedItem.getmMovieName());
+        detailIntent.putExtra("movieRate", clickedItem.getmMovieRate());
+        detailIntent.putExtra("movieReleaseDate", clickedItem.getmMovieReleaseDate());
+        detailIntent.putExtra("movieOverview", clickedItem.getmMovieOverview());
 
         startActivity(detailIntent);
     }

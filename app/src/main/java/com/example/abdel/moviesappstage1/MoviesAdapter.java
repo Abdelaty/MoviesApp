@@ -52,8 +52,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         holder.tv_movieRelease.setText(releaseDate);
 
         holder.tv_movieOverview.setText(overview);
-
-        Picasso.with(context).load(imageUrl).into(holder.iv_moviePoster);
+        Picasso.with(context).load(imageUrl).placeholder(R.drawable.user_placeholder).error(R.drawable.user_placeholder).into(holder.iv_moviePoster);
     }
 
     @Override
