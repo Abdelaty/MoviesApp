@@ -18,6 +18,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private Context context;
     private ArrayList<MoviesModel> moviesArrayList;
     private LayoutInflater layoutInflater;
+    private OnItemClickListener mListener;
 
     public MoviesAdapter(Context context, ArrayList<MoviesModel> dataArrayList) {
         this.context = context;
@@ -25,12 +26,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         layoutInflater = LayoutInflater.from(context);
     }
 
-
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.single_movie_item, parent,false);
+        View view = layoutInflater.inflate(R.layout.single_movie_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -40,7 +43,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         MoviesModel currentElement = moviesArrayList.get(position);
         String imageUrl = currentElement.getmImageUrl();
         String title = currentElement.getmMovieName();
+        String rate = currentElement.getmMovieRate();
+        String overview = currentElement.getmMovieOverview();
+        String releaseDate = currentElement.getmMovieReleaseDate();
         holder.tv_movieName.setText(title);
+        holder.tv_movieRate.setText(rate);
+
+        holder.tv_movieRelease.setText(releaseDate);
+
+        holder.tv_movieOverview.setText(overview);
+
         Picasso.with(context).load(imageUrl).into(holder.iv_moviePoster);
     }
 
@@ -49,15 +61,41 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         return moviesArrayList.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_movieName;
+        TextView tv_movieRate;
+
+        TextView tv_movieRelease;
+        TextView tv_movieOverview;
+
         ImageView iv_moviePoster;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tv_movieName = (TextView) itemView.findViewById(R.id.movie_name);
             iv_moviePoster = (ImageView) itemView.findViewById(R.id.movie_poster);
+            tv_movieRelease = (TextView) itemView.findViewById(R.id.movie_release_Date);
+            tv_movieOverview = (TextView) itemView.findViewById(R.id.movie_overview);
+            tv_movieRate = (TextView) itemView.findViewById(R.id.movie_rate);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+
+                        }
+
+                    }
+                }
+            });
         }
+
     }
 }
 
