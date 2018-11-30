@@ -7,4 +7,8 @@
         android:id="@+id/rated"
         android:orderInCategory="1"
         android:title="@string/top_rated" />
+    <item
+        android:id="@+id/fav"
+        android:orderInCategory="1"
+        android:title="favorite" />
 </menu>

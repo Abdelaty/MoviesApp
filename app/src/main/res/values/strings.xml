@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies App Stage1</string>
+    <string name="app_name">Movies App</string>
     <string name="image_description">Movie Poster</string>
     <string name="test_text">Title</string>
     <string name="popular_movie">Popular Movie</string>
@@ -8,5 +8,21 @@
     <string name="rate">Rate:  </string>
     <string name="overview">Overview:  </string>
     <string name="a">28d6cfccb10e5e4d42b71bdfd19ec50b </string>
+    <string name="json_poster_path">poster_path</string>
+    <string name="json_vote_average">vote_average</string>
+    <string name="json_overview">overview</string>
+    <string name="json_release_date">release_date</string>
+    <string name="json_id">id</string>
+    <string name="json_title">title</string>
+    <string name="pop_movie">Popular Movie</string>
+    <string name="top_movie">Top Rated</string>
+    <string name="fav_movie">Favourite</string>
+    <string name="json_results">results</string>
+    <string name="pop_base_url">http://api.themoviedb.org/3/movie/popular?api_key=</string>
+    <string name="top_base_url">http://api.themoviedb.org/3/movie/top_rated?api_key=</string>
+    <string name="img_base_url">http://image.tmdb.org/t/p/w185</string>
+    <string name="toast_removed">Removed From Favourite.</string>
+    <string name="toast_added">Added to Favourite.</string>
+    <string name="youtube_package">com.google.android.youtube</string>
 
 </resources>

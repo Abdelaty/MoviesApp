@@ -1,4 +1,4 @@
-package com.example.abdel.moviesappstage1;
+package com.example.abdel.movies;
 
 import org.junit.Test;
 
