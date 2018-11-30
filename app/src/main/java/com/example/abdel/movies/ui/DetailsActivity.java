@@ -83,7 +83,7 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         Intent intent = getIntent();
-        imageButton = (ImageButton) findViewById(R.id.fav_button);
+        imageButton = findViewById(R.id.fav_button);
 
 
 
@@ -94,7 +94,7 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
         String CAST_URL = "http://api.themoviedb.org/3/movie/" + movieId + "/casts?api_key=" + apiKey;
         String TRAILER_URL = " https://api.themoviedb.org/3/movie/" + movieId + "/videos?api_key=" + apiKey;
 
-        reviewTV = (TextView) findViewById(R.id.tv_movie_review_label);
+        reviewTV = findViewById(R.id.tv_movie_review_label);
         imageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onFavouriteClick();
@@ -233,7 +233,6 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
                         JSONObject result = jsonArray.getJSONObject(i);
                         //edit review
                         if (result.has("key")) {
-
                             String trailerPath = result.getString("key");
                             trailerFullImage = baseTrailerUrl + trailerPath;
                             Log.v("Image Event", "image Url is: " + trailerFullImage);
