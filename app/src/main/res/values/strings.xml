@@ -24,5 +24,8 @@
     <string name="toast_removed">Removed From Favourite.</string>
     <string name="toast_added">Added to Favourite.</string>
     <string name="youtube_package">com.google.android.youtube</string>
+    <string name="trailers">Trailers:</string>
+    <string name="reviews">Reviews:</string>
+    <string name="cast">Cast:</string>
 
 </resources>

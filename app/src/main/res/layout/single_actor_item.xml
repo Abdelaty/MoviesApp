@@ -5,8 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
 
-    android:layout_marginRight="15dp"
-    android:layout_marginEnd="15dp">
+    android:layout_marginEnd="@dimen/actor_itm_marf"
+    android:layout_marginRight="@dimen/actor_itm_marf">
 
 
     <android.support.constraint.ConstraintLayout
@@ -30,13 +30,12 @@
             android:id="@+id/actor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Ahmd"
+            android:layout_marginStart="@dimen/marg"
+            android:layout_marginLeft="@dimen/marg"
+            android:layout_marginTop="@dimen/marg"
+            android:layout_marginEnd="@dimen/marg"
+            android:layout_marginRight="@dimen/marg"
+            android:layout_marginBottom="@dimen/marg"
             app:layout_constraintBottom_toBottomOf="@+id/actor_char"
             app:layout_constraintEnd_toEndOf="@+id/actor_image"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +46,7 @@
             android:id="@+id/actor_char"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="JSON"
+            android:layout_marginBottom="@dimen/marg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/actor_name" />
     </android.support.constraint.ConstraintLayout>

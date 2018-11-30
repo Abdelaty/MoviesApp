@@ -133,7 +133,7 @@
             android:layout_marginEnd="@dimen/margin"
             android:layout_marginRight="@dimen/margin"
             android:layout_marginBottom="@dimen/margin"
-            android:text="Cast:"
+            android:text="@string/cast"
             android:textColor="@color/primaryText"
             android:textSize="14sp"
             android:textStyle="bold|italic"
@@ -161,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_movie_review_label"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/marg_top_dtails">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -169,8 +169,8 @@
 
             android:id="@+id/fav_button"
             style="@android:style/Widget.Holo.Light.ImageButton"
-            android:layout_width="44dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/ib_width_dtails"
+            android:layout_height="@dimen/ib_hight_dtail"
             android:layout_alignStart="@+id/tv_movie_overview_label"
             android:layout_alignLeft="@+id/tv_movie_overview_label"
             android:layout_marginStart="-6dp"
@@ -178,6 +178,7 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_favorite_border"
+            android:contentDescription="@string/fav_movie"
             android:visibility="visible" />
 
         <TextView
@@ -185,8 +186,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_rv"
-            android:padding="7dp"
-            android:text="Reviews:"
+            android:padding="@dimen/padding_tv_dtail"
+            android:text="@string/reviews"
             android:textColor="@color/primaryText"
             android:textStyle="bold|italic"
             tools:text="Reviews:" />
@@ -196,7 +197,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/trailers_tv_label"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/marg_top_rv_dtail">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -205,8 +206,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/reviews_rv"
-            android:padding="7dp"
-            android:text="Trailers:"
+            android:padding="@dimen/tv_padding_main"
+            android:text="@string/trailers"
             android:textColor="@color/primaryText"
             android:textStyle="bold|italic"
             tools:text="Trailers:" />

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="@dimen/marg_bottom_rviw">
 
     <ImageView
 
@@ -13,27 +13,27 @@
         android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/lft_marg_rv"
         android:id="@+id/tv_review_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
+        android:layout_marginTop="@dimen/tv_marg"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="24sp" />
 
     <TextView
-        android:padding="5dp"
+        android:layout_marginTop="@dimen/lft_marg_rv"
         android:id="@+id/tv_movie_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginBottom="@dimen/bottom_mar"
         android:text="rviw"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="14sp"
+        android:padding="@dimen/tv_padding"
         android:typeface="sans"
         app:fontFamily="sans-serif"
-        android:layout_marginBottom="20dp"/>
+        android:textSize="@dimen/tv_siz" />
 
 </android.support.v7.widget.CardView>
 

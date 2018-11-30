@@ -6,4 +6,22 @@
     <dimen name="tv_name_size">24sp</dimen>
     <dimen name="image_poster_height">250dp</dimen>
     <dimen name="layour_padding">20dp</dimen>
+    <dimen name="marg">8dp</dimen>
+    <dimen name="actor_itm_marf">15dp</dimen>
+    <dimen name="imag_mov_itm_hight">247dp</dimen>
+    <dimen name="imag_mov_itm_width">188dp</dimen>
+    <dimen name="marg_bottom_rviw">20dp</dimen>
+    <dimen name="lft_marg_rv">80dp</dimen>
+    <dimen name="tv_marg">20dp</dimen>
+    <dimen name="tv_padding">5dp</dimen>
+    <dimen name="tv_siz">14sp</dimen>
+    <dimen name="bottom_mar">20dp</dimen>
+    <dimen name="marg_imagb_trailr">4dp</dimen>
+    <dimen name="marg_top_tr">16dp</dimen>
+    <dimen name="tv_padding_main">7dp</dimen>
+    <dimen name="marg_top_rv_dtail">5dp</dimen>
+    <dimen name="padding_tv_dtail">7dp</dimen>
+    <dimen name="ib_width_dtails">44dp</dimen>
+    <dimen name="ib_hight_dtail">32dp</dimen>
+    <dimen name="marg_top_dtails">5dp</dimen>
 </resources>

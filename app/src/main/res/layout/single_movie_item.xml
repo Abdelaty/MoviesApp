@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/movie_poster"
-            android:layout_width="188dp"
-            android:layout_height="247dp"
+            android:layout_width="@dimen/imag_mov_itm_width"
+            android:layout_height="@dimen/imag_mov_itm_hight"
             android:contentDescription="@string/image_description"
             android:src="@drawable/ic_launcher_background"
 
