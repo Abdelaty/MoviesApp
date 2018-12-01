@@ -24,4 +24,5 @@
     <dimen name="ib_width_dtails">44dp</dimen>
     <dimen name="ib_hight_dtail">32dp</dimen>
     <dimen name="marg_top_dtails">5dp</dimen>
+    <dimen name="tv_movie_actors">14sp</dimen>
 </resources>
