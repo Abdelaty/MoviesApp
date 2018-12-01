@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.abdel.movies.R;
@@ -14,6 +13,8 @@ import com.example.abdel.movies.models.MoviesModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ViewHolder> {
     private Context context;
@@ -51,14 +52,14 @@ public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.ViewHolder
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_actorImage;
+        CircleImageView iv_actorImage;
         TextView iv_actorName, iv_actorChar;
 
         ViewHolder(View itemView) {
             super(itemView);
-            iv_actorImage = (ImageView) itemView.findViewById(R.id.actor_image);
-            iv_actorName = (TextView) itemView.findViewById(R.id.actor_name);
-            iv_actorChar = (TextView) itemView.findViewById(R.id.actor_char);
+            iv_actorImage = itemView.findViewById(R.id.actor_image);
+            iv_actorName = itemView.findViewById(R.id.actor_name);
+            iv_actorChar = itemView.findViewById(R.id.actor_char);
         }
     }
 
