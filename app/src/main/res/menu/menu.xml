@@ -10,5 +10,5 @@
     <item
         android:id="@+id/fav"
         android:orderInCategory="1"
-        android:title="favorite" />
+        android:title="@string/fav_movie" />
 </menu>

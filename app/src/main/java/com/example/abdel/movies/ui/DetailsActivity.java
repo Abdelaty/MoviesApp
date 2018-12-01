@@ -42,21 +42,22 @@ import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
 public class DetailsActivity extends AppCompatActivity implements TrailerAdapter.OnItemClickListener {
     private static final String DATABASE_NAME = "movies_db";
-    String apiKey = BuildConfig.API_KEY;
-    String movieId = "335983";
-    String baseUrl = "http://image.tmdb.org/t/p/w185";
-    String baseTrailerUrl = "https://www.youtube.com/watch?v=";
-    TextView reviewTV;
-    ImageButton imageButton;
-    String movieReview;
-    String movieAuthor;
-    String actorName;
-    String actorChar;
-    String actorImageUrl;
-    String actorFullImage;
-    String trailerFullImage;
-    Context context = this;
-    String movieName, imageUrl;
+    boolean isFavourite = false;
+    private String apiKey = BuildConfig.API_KEY;
+    private String movieId = "335983";
+    private String baseUrl = "http://image.tmdb.org/t/p/w185";
+    private String baseTrailerUrl = "https://www.youtube.com/watch?v=";
+    private TextView reviewTV;
+    private ImageButton imageButton;
+    private String movieReview;
+    private String movieAuthor;
+    private String actorName;
+    private String actorChar;
+    private String actorImageUrl;
+    private String actorFullImage;
+    private String trailerFullImage;
+    private Context context = this;
+    private String movieName, imageUrl;
     private TrailerAdapter.OnItemClickListener mListener;
     private RecyclerView reviewRecyclerView;
     private ArrayList<MoviesModel> reviewArrayList;
@@ -68,7 +69,6 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
     private RecyclerView trailerRecyclerView;
     private ArrayList<MoviesModel> trailerArrayList;
     private ArrayList<DatabaseModel> moviesArrayList = new ArrayList<DatabaseModel>();
-    boolean isFavourite = false;
     private TrailerAdapter trailerAdapter;
     private MovieDatabase movieDatabase;
     private Executor executor;
@@ -84,8 +84,6 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
         setContentView(R.layout.activity_details);
         Intent intent = getIntent();
         imageButton = findViewById(R.id.fav_button);
-
-
 
 
         movieDatabase = MovieDatabase.getAppInstance(getApplicationContext());
@@ -301,13 +299,14 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
                     isFavourite = false;
 
                 } else {
-                    // imageButton.setBackgroundResource(R.drawable.ic_favorite_border);
+                    imageButton.setBackgroundResource(R.drawable.ic_favorite_border);
                     isFavourite = true;
 
                 }
 
             }
-        });        DatabaseModel movie = new DatabaseModel();
+        });
+        DatabaseModel movie = new DatabaseModel();
         if (!movieDatabase.daoAccess().getMovieWithId(movieId)) {
 
             movie.setMovieDbId(movieId);
@@ -331,4 +330,5 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
 
 
 }
+
 

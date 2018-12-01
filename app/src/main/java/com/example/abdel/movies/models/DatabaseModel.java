@@ -7,6 +7,12 @@ import android.support.annotation.NonNull;
 @Entity
 public class DatabaseModel {
     @NonNull
+    @PrimaryKey
+    private String movieDbId;
+    private String imageUrl;
+    private String movieName;
+
+    @NonNull
     public String getMovieDbId() {
         return movieDbId;
     }
@@ -14,10 +20,6 @@ public class DatabaseModel {
     public void setMovieDbId(@NonNull String movieDbId) {
         this.movieDbId = movieDbId;
     }
-
-    @NonNull
-    @PrimaryKey
-    private String movieDbId;
 
     public String getImageUrl() {
         return imageUrl;
@@ -34,10 +36,6 @@ public class DatabaseModel {
     public void setMovieName(String movieName) {
         this.movieName = movieName;
     }
-
-    private String imageUrl;
-
-    private String movieName;
 
 
 
