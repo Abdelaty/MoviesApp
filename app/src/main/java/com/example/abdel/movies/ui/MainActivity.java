@@ -2,6 +2,7 @@ package com.example.abdel.movies.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -37,7 +38,8 @@ import java.util.ListIterator;
 
 
 public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnItemClickListener {
-
+    static long currentVisiblePosition = 0; // this variable should be static in class
+    private static Bundle mBundleRecyclerViewState;
     String apiKey = BuildConfig.API_KEY;
     String baseUrl = "http://image.tmdb.org/t/p/w185";
     String popularUrl = " http://api.themoviedb.org/3/movie/popular?api_key=" + apiKey;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
     MenuItem topRatedItem;
     GridLayoutManager gridLayoutManager;
     int x = 0;
+    String LIST_STATE_KEY = "hi";
     private MovieDatabase movieDatabase;
     private RecyclerView moviesRecyclerView;
     private ArrayList<MoviesModel> moviesArrayList;
@@ -171,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
         }
     };
     private FavouriteAdapter favAdapter;
+    private Parcelable mListState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,38 +191,42 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
         mRequestQueue = Volley.newRequestQueue(this);
         if (savedInstanceState != null) {
             x = savedInstanceState.getInt("movieKey");
+
+            switch (x) {
+                case 0: {
+                    moviesArrayList.clear();
+
+                    parseJSON(popularUrl);
+                    moviesArrayList.clear();
+                    moviesAdapter.notifyDataSetChanged();
+                    Toast.makeText(this, R.string.pop_movie, Toast.LENGTH_SHORT).show();
+
+                }
+                case 1: {
+                    moviesArrayList.clear();
+                    parseJSON(topRatedUrl);
+                    moviesArrayList.clear();
+                    moviesAdapter.notifyDataSetChanged();
+                    Toast.makeText(this, R.string.top_movie, Toast.LENGTH_SHORT).show();
+
+                }
+                case 2: {
+                    Toast.makeText(this, R.string.fav_movie, Toast.LENGTH_SHORT).show();
+                    moviesArrayList.clear();
+                    favouriteArrayList = movieDatabase.daoAccess().getMovies();
+                    favAdapter = new FavouriteAdapter(this, favouriteArrayList);
+                    moviesRecyclerView.setAdapter(favAdapter);
+                    favAdapter.notifyDataSetChanged();
+                }
+            }
+        } else {
+            parseJSON(popularUrl);
         }
-        switch (x) {
-            case 0: {
-                parseJSON(popularUrl);
-                moviesArrayList.clear();
-                moviesAdapter.notifyDataSetChanged();
-                Toast.makeText(this, R.string.pop_movie, Toast.LENGTH_SHORT).show();
-
-            }
-            case 1: {
-                parseJSON(topRatedUrl);
-                moviesArrayList.clear();
-                moviesAdapter.notifyDataSetChanged();
-                Toast.makeText(this, R.string.top_movie, Toast.LENGTH_SHORT).show();
-
-            }
-            case 2: {
-                Toast.makeText(this, R.string.fav_movie, Toast.LENGTH_SHORT).show();
-                moviesArrayList.clear();
-                favouriteArrayList = movieDatabase.daoAccess().getMovies();
-                favAdapter = new FavouriteAdapter(this, favouriteArrayList);
-                moviesRecyclerView.setAdapter(favAdapter);
-                favAdapter.notifyDataSetChanged();
-            }
-
-        }
-
-
-        // parseJSON(popularUrl);
         gridLayoutManager = new GridLayoutManager(this, 2);
 
         moviesRecyclerView.setLayoutManager(gridLayoutManager);
+        currentVisiblePosition = ((GridLayoutManager) moviesRecyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+
     }
 
     private void parseJSON(String url) {
@@ -275,26 +283,25 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.popular) {
+            moviesArrayList.clear();
             Toast.makeText(this, R.string.pop_movie, Toast.LENGTH_SHORT).show();
             parseJSON(popularUrl);
-            moviesArrayList.clear();
             moviesAdapter.notifyDataSetChanged();
 
             x = 0;
             Log.v("x", String.valueOf(x));
             return true;
-        }
-        if (itemThatWasClickedId == R.id.rated) {
+        } else if (itemThatWasClickedId == R.id.rated) {
+            moviesArrayList.clear();
+
             Toast.makeText(this, R.string.top_movie, Toast.LENGTH_SHORT).show();
             parseJSON(topRatedUrl);
-            moviesArrayList.clear();
             moviesAdapter.notifyDataSetChanged();
 
 
             x = 1;
             return true;
-        }
-        if (itemThatWasClickedId == R.id.fav) {
+        } else if (itemThatWasClickedId == R.id.fav) {
             Toast.makeText(this, R.string.fav_movie, Toast.LENGTH_SHORT).show();
 
             moviesArrayList.clear();
@@ -328,14 +335,51 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnI
     protected void onSaveInstanceState(Bundle state) {
         super.onSaveInstanceState(state);
         state.putInt("movieKey", x);
-        Log.v("onSaveInstanceState", "onSaveInstanceState");
+        mListState = gridLayoutManager.onSaveInstanceState();
+        state.putParcelable(LIST_STATE_KEY, mListState);
+        //   mListState = gridLayoutManager.onSaveInstanceState();
+        //    state.putParcelable(LIST_STATE_KEY, mListState);
+        Log.v("onSaveInstanceState", String.valueOf(x));
         // Save list state
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null)
+            mListState = savedInstanceState.getParcelable(LIST_STATE_KEY);
+        //   if (savedInstanceState != null)
+        //       mListState = savedInstanceState.getParcelable(LIST_STATE_KEY);
     }
+
+    /* @Override
+     protected void onResume() {
+         super.onResume();
+
+         if (mListState != null) {
+             gridLayoutManager.onRestoreInstanceState(mListState);
+         }
+     }*/
+  /*  @Override
+    protected void onPause() {
+        super.onPause();
+
+        // save RecyclerView state
+        mBundleRecyclerViewState = new Bundle();
+        Parcelable listState = moviesRecyclerView.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerViewState.putParcelable(LIST_STATE_KEY, listState);
+    }
+*/
+    @Override
+    protected void onResume() {
+        super.onResume();
+        moviesRecyclerView.getLayoutManager().scrollToPosition((int) currentVisiblePosition);
+        currentVisiblePosition = 0;
+        if (mListState != null) {
+            gridLayoutManager.onRestoreInstanceState(mListState);
+        }
+    }
+
 }
 
 
